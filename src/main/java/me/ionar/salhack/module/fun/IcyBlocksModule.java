@@ -1,5 +1,7 @@
 package me.ionar.salhack.module.fun;
 
+import java.util.TimerTask;
+
 import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.Value;
 import net.minecraft.init.Blocks;
