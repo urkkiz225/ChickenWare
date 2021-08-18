@@ -1,14 +1,14 @@
 [
     {
-      "modid": "salhack",
-      "name": "SalHack",
-      "description": "SalHack utility mod.",
+      "modid": "chickenware",
+      "name": "chickenWare",
+      "description": "ChickenWare, the (not so) ultimate chicken client",
       "version": "${modVersion}",
       "mcversion": "${version_minecraft}",
-      "url": "https://salhack.com",
-      "updateUrl": "https://salhack.com",
-      "authorList": ["ionar"],
-      "credits": "ionar",
+      "url": "https://github.com/urkkiz225/ChickenWare",
+      "updateUrl": "https://github.com/urkkiz225/ChickenWare",
+      "authorList": ["ionar, urkkiz"],
+      "credits": "ionar, urkkiz",
       "logoFile": "assets/salhack/imgs/SalHackWatermark.png",
       "screenshots": [],
       "dependencies": []

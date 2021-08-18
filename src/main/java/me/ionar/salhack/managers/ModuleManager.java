@@ -195,6 +195,7 @@ public class ModuleManager
         // Fun 
         Add(new PartyModule());
         Add(new IcyBlocksModule());
+        Add(new AustraliaModule());
         
 
         LoadExternalModules();

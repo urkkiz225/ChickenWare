@@ -3,7 +3,12 @@ package me.ionar.salhack.module.fun;
 import java.util.TimerTask;
 import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.Value;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.util.Timer;
+import java.util.Random;
 
 
 	
@@ -14,9 +19,13 @@ public class PartyModule extends Module {
 	public final Value<Float> RotationSpeed = new Value<Float>("Rotation Speed", new String[]
 		    { "RtSpd" }, "Speed to rotate at, requires for Rotate to be on", 1.82f, -100f, 100f, 0.1f); 
 	public Value<Float> Delay = new Value<Float>("Delay", new String[]
-            { "Delay, Wait" }, "Delay for each tick", 1f, 0f, 10f, 1f);
+            { "ChatDelay, Wait" }, "Delay for each tick",100f, 0f, 20000f, 0f);
 	boolean Rotate=true;
     private Timer timer = new Timer();
+    private Timer timerRotate = new Timer();
+	int chatMsg = 1;
+    float chatDelay=Delay.getValue();
+    long chatDelayLong = (long) chatDelay;
 
     public PartyModule()
 	{
@@ -29,31 +38,45 @@ public class PartyModule extends Module {
 	@Override
 	public void onEnable()
 	{  
-		
-			if (Announce.getValue()) {
-			timer = new Timer();
+		super.onEnable();
+		timer = new Timer();
+		timerRotate = new Timer();
+		if (Announce.getValue()) {
 
-        	timer.scheduleAtFixedRate(new TimerTask()
-        	{
-            	@Override
-            	public void run()
-            	{
-            		mc.player.sendChatMessage("Agricultural revolution was not a bad thing!");
-            	}
-        	}, 0, 1000);
-		}
-		
-			if (Rotation.getValue()) {
+    	timer.scheduleAtFixedRate(new TimerTask()
+    	{
+        	@Override
+        	public void run()
+        	{	
+        		float chatDelay=Delay.getValue();
+        		if (chatMsg==1) {
+        			mc.player.sendChatMessage("Im partying! Care to join?");
+        		}
+        		if (chatMsg==2) {
+        			mc.player.sendChatMessage("cope");
+        		}
+        		
+        		if (chatMsg==3) {
+        			chatMsg=0;
+        			mc.player.sendChatMessage("larp");
+        		}
+    			chatMsg++;
+        	}
+    	}, 0, chatDelayLong*10);
+	}
+	
+		if (Rotation.getValue()) {
 
-        	timer.scheduleAtFixedRate(new TimerTask()
-        	{
-            	@Override
-            	public void run()
-            	{
-            		mc.player.rotationYaw=mc.player.prevRotationYaw+RotationSpeed.getValue();
-            	}
-        	}, 0, 400);
-		}
+    	timerRotate.scheduleAtFixedRate(new TimerTask()
+    	{
+        	@Override
+        	public void run()
+        	{        		
+        		mc.player.cameraYaw=mc.player.cameraYaw-(RotationSpeed.getValue()*2);
+        		mc.player.rotationYaw=mc.player.prevRotationYaw+RotationSpeed.getValue();
+        	}
+    	}, 0, 100);
+	}
     }
 	
 	@Override
@@ -63,6 +86,7 @@ public class PartyModule extends Module {
 
         if (timer != null)
             timer.cancel();
+        	timerRotate.cancel();
 	   }
 }
     

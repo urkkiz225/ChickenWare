@@ -1,10 +1,11 @@
 package me.ionar.salhack.module.fun;
 
-import java.util.TimerTask;
-
 import me.ionar.salhack.module.Module;
 import me.ionar.salhack.module.Value;
+import me.zero.alpine.fork.listener.EventHandler;
+import me.zero.alpine.fork.listener.Listener;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 
 
@@ -405,6 +406,12 @@ public class IcyBlocksModule extends Module {
           Blocks.CONCRETE_POWDER.setDefaultSlipperiness(0.6f);
 		
 	}
+	
+    @EventHandler
+    private Listener<EntityJoinWorldEvent> OnWorldEvent = new Listener<>(p_Event ->
+    {
+            toggle();
+    });
 			
 }	
 
