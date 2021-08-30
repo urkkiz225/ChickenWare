@@ -43,6 +43,7 @@ public class MessageModifierModule extends Module{
         Circle,
         UwU,
         Classic,
+        Chicken,
     }
 
     public MessageModifierModule()
@@ -60,7 +61,7 @@ public class MessageModifierModule extends Module{
         if (p_Event.Message.startsWith("/") || p_Event.Message.startsWith("*") || p_Event.Message.startsWith("-") || p_Event.Message.startsWith("#") || p_Event.Message.startsWith("$") || p_Event.Message.startsWith("^") || p_Event.Message.startsWith(";") || p_Event.Message.startsWith(".") || p_Event.Message.startsWith("&") || p_Event.Message.startsWith(",") || p_Event.Message.startsWith("!"))
             return;
 
-        String suffix = "chickenWare";
+        String suffix = "chickenware";
         String l_Message = p_Event.Message;
         String total_Message;
 
@@ -73,7 +74,11 @@ public class MessageModifierModule extends Module{
                case UwU:
                    //Thanks to Osiris for this UwU bit.
                    l_Message = l_Message.replace("l", "w").replace("ll", "ww").replace("r", "w").replace("R", "W") + " UwU";
-                   suffix = "uwu creepy-salhack";
+                   suffix = "uwu chickenware";
+               case Chicken:
+                   //Thanks to Osiris for this UwU bit.
+                   l_Message = l_Message.replace("a", "bok").replace("b", "bok").replace("c", "bok").replace("d", "Bok").replace("e", "bok").replace("f", "bok").replace("g", "bok").replace("h", "Bok").replace("i", "bok").replace("j", "bok").replace("k", "bok").replace("l", "Bok").replace("m", "bok").replace("n", "bok").replace("o", "bok").replace("p", "Bok").replace("q", "bok").replace("r", "bok").replace("s", "bok").replace("t", "Bok").replace("u", "bok").replace("z", "bok").replace("x", "bok").replace("y", "Bok").replace("ö", "bok").replace("ä", "bok").replace("å", "Bok");
+                   suffix = "bok bok";
                    break;
                case Classic:
                    l_Message = fancy(l_Message);
